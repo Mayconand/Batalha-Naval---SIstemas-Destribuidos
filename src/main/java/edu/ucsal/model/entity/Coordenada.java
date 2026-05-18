@@ -1,4 +1,4 @@
-package edu.ucsal.model;
+package edu.ucsal.model.entity;
 
 import java.util.Objects;
 

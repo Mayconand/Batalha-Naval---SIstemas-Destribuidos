@@ -1,4 +1,4 @@
-package edu.ucsal.model;
+package edu.ucsal.model.entity;
 import edu.ucsal.enums.Direcao;
 import edu.ucsal.enums.TipoBarco;
 
@@ -11,6 +11,7 @@ public class Barco {
     private TipoBarco tipoBarco;
     private Direcao direcao;
     private List<Coordenada> lista_coordenadas = new ArrayList<>();
+    private List<Coordenada> coordenadasAtingidas = new ArrayList<>();
 
 
 
@@ -50,8 +51,16 @@ public class Barco {
         return lista_coordenadas;
     }
 
+    public List<Coordenada> getCoordenadasAtingidas() {
+        return coordenadasAtingidas;
+    }
 
 
+    public boolean barcoAfundou(){
+
+        return coordenadasAtingidas.size() == lista_coordenadas.size();
+
+    }
     public List<Coordenada> gerarCoordenadas() {
 
         lista_coordenadas.clear();
