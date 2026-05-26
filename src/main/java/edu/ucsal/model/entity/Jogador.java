@@ -1,8 +1,8 @@
 package edu.ucsal.model.entity;
 
+import java.io.Serializable;
 
-
-public class Jogador {
+public class Jogador implements Serializable{
 
     private String nome;
     private Tabuleiro tabuleiro;

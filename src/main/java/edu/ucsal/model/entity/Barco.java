@@ -2,10 +2,11 @@ package edu.ucsal.model.entity;
 import edu.ucsal.enums.Direcao;
 import edu.ucsal.enums.TipoBarco;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Barco {
+public class Barco implements Serializable{
 
     private Coordenada coordenadaInicial;
     private TipoBarco tipoBarco;

@@ -1,8 +1,9 @@
 package edu.ucsal.model.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Coordenada {
+public class Coordenada implements Serializable{
 
     private int x;
     private int y;

@@ -1,9 +1,11 @@
 package edu.ucsal.model.entity;
 
+import java.io.Serializable;
+
 import edu.ucsal.enums.ResultadoAtaque;
 
 
-public class Partida {
+public class Partida implements Serializable{
 
     private Jogador jogador1;
     private Jogador jogador2;

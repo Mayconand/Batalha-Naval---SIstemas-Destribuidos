@@ -1,12 +1,14 @@
 package edu.ucsal.model.entity;
 
+import java.io.Serializable;
+
 import edu.ucsal.enums.ResultadoAtaque;
 import edu.ucsal.enums.TipoBarco;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tabuleiro {
+public class Tabuleiro implements Serializable{
 
     private final int TAMANHO = 10;
 

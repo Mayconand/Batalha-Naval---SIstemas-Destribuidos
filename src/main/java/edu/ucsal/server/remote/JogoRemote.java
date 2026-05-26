@@ -1,12 +1,33 @@
 package edu.ucsal.server.remote;
 
+import edu.ucsal.enums.Direcao;
+import edu.ucsal.enums.ResultadoAtaque;
+import edu.ucsal.enums.TipoBarco;
+import edu.ucsal.model.entity.Coordenada;
+
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 public interface JogoRemote extends Remote {
 
-    int conectarJogador(String nome);
+    void conectarJogador(String nome)
+            throws RemoteException;
 
-    int posicionarBarco(int x, int y);
+    boolean adicionarBarco(
+            String jogador,
+            Coordenada coordenada,
+            TipoBarco tipo,
+            Direcao direcao
+    ) throws RemoteException;
 
-    int disparar(int x, int y);
+    ResultadoAtaque atacar(
+            String jogador,
+            Coordenada coordenada
+    ) throws RemoteException;
+
+    String turnoAtual()
+            throws RemoteException;
+
+    boolean verificarVitoria(String jogador)
+            throws RemoteException;
 }
