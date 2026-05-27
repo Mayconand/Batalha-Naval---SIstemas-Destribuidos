@@ -6,6 +6,7 @@ import edu.ucsal.server.remote.JogoRemote;
 
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.util.Scanner;
 
 public class Cliente {
 
@@ -15,7 +16,7 @@ public class Cliente {
 
             Registry registry =
                     LocateRegistry.getRegistry(
-                            "192.168.0.74", //TROCAR PELO IP REAL DO SERVIDOR
+                            "10.8.184.7", //TROCAR PELO IP REAL DO SERVIDOR
                             1099
                     );
 
@@ -24,26 +25,118 @@ public class Cliente {
                             "BatalhaNaval"
                     );
 
-            jogo.conectarJogador("Maycon");
+            Scanner scanner = new Scanner(System.in);
 
-            jogo.adicionarBarco(
-                    "Maycon",
-                    new Coordenada(2,3),
-                    TipoBarco.SUBMARINO,
-                    Direcao.HORIZONTAL
-            );
+            System.out.print("Digite seu nome: ");
+            String nome = scanner.nextLine();
 
-            ResultadoAtaque resultado =
-                    jogo.atacar(
-                            "Maycon",
-                            new Coordenada(1,1)
+            jogo.conectarJogador(nome);
+
+            System.out.println("Conectado!");
+
+            while(!jogo.partidaPronta()){
+
+                System.out.println(
+                        "Aguardando outro jogador..."
+                );
+
+                Thread.sleep(1000);
+            }
+
+            System.out.println("Partida iniciada!");
+
+            for (TipoBarco tipo : TipoBarco.values()) {
+
+                int quantidade = tipo.getQuantidadeMaxima();
+
+                for (int i = 0; i < quantidade; i++) {
+
+                    boolean adicionado = false;
+
+                    while (!adicionado) {
+
+                        System.out.println(
+                                "\nPosicionando " + tipo +
+                                        " (" + (i + 1) + "/" + quantidade + ")"
+                        );
+
+                        System.out.print("X inicial: ");
+                        int x = scanner.nextInt();
+
+                        System.out.print("Y inicial: ");
+                        int y = scanner.nextInt();
+
+                        System.out.print("Direção (H/V): ");
+                        String dir = scanner.next().toUpperCase();
+
+                        Direcao direcao =
+                                dir.equals("H")
+                                        ? Direcao.HORIZONTAL
+                                        : Direcao.VERTICAL;
+
+                        adicionado = jogo.adicionarBarco(
+                                nome,
+                                new Coordenada(x, y),
+                                tipo,
+                                direcao
+                        );
+
+                        if (adicionado) {
+
+                            System.out.println(
+                                    "Barco adicionado com sucesso!"
+                            );
+
+                        } else {
+
+                            System.out.println(
+                                    "Posição inválida! Tente novamente."
+                            );
+                        }
+                    }
+                }
+            }
+
+            while (!jogo.verificarVitoria(nome)) {
+
+                if (jogo.turnoAtual().equals(nome)) {
+
+                    System.out.println("\n=== SEU TURNO ===");
+
+                    System.out.print("X: ");
+                    int x = scanner.nextInt();
+
+                    System.out.print("Y: ");
+                    int y = scanner.nextInt();
+
+                    ResultadoAtaque resultado =
+                            jogo.atacar(
+                                    nome,
+                                    new Coordenada(x, y)
+                            );
+
+                    System.out.println(
+                            "Resultado: " + resultado
                     );
 
-            System.out.println(resultado);
+                    if (jogo.verificarVitoria(nome)) {
 
-            System.out.println(
-                    jogo.turnoAtual()
-            );
+                        System.out.println(
+                                "VOCÊ VENCEU!"
+                        );
+
+                        break;
+                    }
+
+                } else {
+
+                    System.out.println(
+                            "Aguardando turno do adversário..."
+                    );
+
+                    Thread.sleep(1000);
+                }
+            }
 
         } catch (Exception e) {
             e.printStackTrace();

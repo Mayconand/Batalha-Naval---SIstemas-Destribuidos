@@ -92,15 +92,21 @@ public class JogoService extends UnicastRemoteObject
     public ResultadoAtaque atacar(
             String jogadorNome,
             Coordenada coordenada
+
     ) throws RemoteException {
 
         Jogador jogador =
                 buscarJogador(jogadorNome);
 
         if(jogador == null){
+            System.out.println("Partida: " + partida);
+            System.out.println("Jogador: " + jogador);
+            System.out.println("Coordenada: " + coordenada);
             return ResultadoAtaque.FORA_DO_TURNO;
         }
-
+        System.out.println("Partida: " + partida);
+        System.out.println("Jogador: " + jogador);
+        System.out.println("Coordenada: " + coordenada);
         return partida.atacar(jogador, coordenada);
     }
 
@@ -128,5 +134,12 @@ public class JogoService extends UnicastRemoteObject
         }
 
         return partida.verificarVitoria(jogador);
+    }
+
+    @Override
+    public boolean partidaPronta()
+            throws RemoteException {
+
+        return partida != null;
     }
 }

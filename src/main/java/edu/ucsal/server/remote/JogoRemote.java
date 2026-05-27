@@ -30,4 +30,7 @@ public interface JogoRemote extends Remote {
 
     boolean verificarVitoria(String jogador)
             throws RemoteException;
+
+    boolean partidaPronta()
+            throws RemoteException;
 }
