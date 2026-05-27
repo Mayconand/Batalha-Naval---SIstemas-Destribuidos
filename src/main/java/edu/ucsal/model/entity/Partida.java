@@ -74,6 +74,9 @@ public class Partida implements Serializable{
             adversario = jogador1;
         }
 
+        atacante.getAtaquesRealizados()
+                .add(coordenada);
+
         ResultadoAtaque resultado =
                 adversario.getTabuleiro().receberAtaque(coordenada);
 

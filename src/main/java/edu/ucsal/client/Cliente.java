@@ -87,6 +87,10 @@ public class Cliente {
                                     "Barco adicionado com sucesso!"
                             );
 
+                            System.out.println(
+                                    jogo.visualizarMeuTabuleiro(nome)
+                            );
+
                         } else {
 
                             System.out.println(
@@ -117,6 +121,22 @@ public class Cliente {
 
                     System.out.println(
                             "Resultado: " + resultado
+                    );
+
+                    System.out.println(
+                            "\n=== MEUS ATAQUES ==="
+                    );
+
+                    System.out.println(
+                            jogo.visualizarAtaques(nome)
+                    );
+
+                    System.out.println(
+                            "\n=== MEU TABULEIRO ==="
+                    );
+
+                    System.out.println(
+                            jogo.visualizarMeuTabuleiro(nome)
                     );
 
                     if (jogo.verificarVitoria(nome)) {

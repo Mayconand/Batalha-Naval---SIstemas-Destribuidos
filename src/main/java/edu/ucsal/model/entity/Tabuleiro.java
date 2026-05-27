@@ -93,4 +93,46 @@ public class Tabuleiro implements Serializable{
 
         return ResultadoAtaque.ERROU;
     }
+    public String visualizarTabuleiro(){
+
+        char[][] matriz = new char[10][10];
+
+        for(int i = 0; i < 10; i++){
+            for(int j = 0; j < 10; j++){
+                matriz[i][j] = '~';
+            }
+        }
+
+        for(Barco barco : barcos){
+
+            for(Coordenada coordenada : barco.getLista_coordenadas()){
+
+                matriz[coordenada.getY()][coordenada.getX()] = 'B';
+            }
+
+            for(Coordenada coordenada : barco.getCoordenadasAtingidas()){
+
+                matriz[coordenada.getY()][coordenada.getX()] = 'X';
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("  0 1 2 3 4 5 6 7 8 9\n");
+
+        for(int i = 0; i < 10; i++){
+
+            sb.append(i).append(" ");
+
+            for(int j = 0; j < 10; j++){
+
+                sb.append(matriz[i][j]).append(" ");
+            }
+
+            sb.append("\n");
+        }
+
+        return sb.toString();
+    }
+
 }

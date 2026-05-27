@@ -33,4 +33,10 @@ public interface JogoRemote extends Remote {
 
     boolean partidaPronta()
             throws RemoteException;
+
+    String visualizarMeuTabuleiro(String jogador)
+            throws RemoteException;
+
+    String visualizarAtaques(String jogador)
+            throws RemoteException;
 }

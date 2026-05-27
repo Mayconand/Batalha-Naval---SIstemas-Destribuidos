@@ -142,4 +142,31 @@ public class JogoService extends UnicastRemoteObject
 
         return partida != null;
     }
+
+    @Override
+    public String visualizarMeuTabuleiro(String jogadorNome)
+            throws RemoteException {
+
+        Jogador jogador = buscarJogador(jogadorNome);
+
+        if(jogador == null){
+            return "Jogador não encontrado";
+        }
+
+        return jogador.getTabuleiro()
+                .visualizarTabuleiro();
+    }
+
+    @Override
+    public String visualizarAtaques(String jogadorNome)
+            throws RemoteException {
+
+        Jogador jogador = buscarJogador(jogadorNome);
+
+        if(jogador == null){
+            return "Jogador não encontrado";
+        }
+
+        return jogador.visualizarAtaques();
+    }
 }
