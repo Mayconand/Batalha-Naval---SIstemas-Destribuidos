@@ -8,6 +8,7 @@ public class Jogador implements Serializable{
 
     private String nome;
     private Tabuleiro tabuleiro;
+    private boolean pronto = false;
 
     public Jogador(String nome) {
         this.nome = nome;
@@ -26,6 +27,14 @@ public class Jogador implements Serializable{
 
     public List<Coordenada> getAtaquesRealizados() {
         return ataquesRealizados;
+    }
+
+    public boolean isPronto() {
+        return pronto;
+    }
+
+    public void setPronto(boolean pronto) {
+        this.pronto = pronto;
     }
 
     public String visualizarAtaques(){
@@ -61,5 +70,7 @@ public class Jogador implements Serializable{
 
         return sb.toString();
     }
+
+
 
 }

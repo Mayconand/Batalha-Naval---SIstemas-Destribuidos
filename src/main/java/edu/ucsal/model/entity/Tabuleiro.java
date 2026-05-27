@@ -109,10 +109,17 @@ public class Tabuleiro implements Serializable{
 
                 matriz[coordenada.getY()][coordenada.getX()] = 'B';
             }
+        }
 
-            for(Coordenada coordenada : barco.getCoordenadasAtingidas()){
+        for(Coordenada coordenada : ataquesRecebidos){
+
+            if(matriz[coordenada.getY()][coordenada.getX()] == 'B'){
 
                 matriz[coordenada.getY()][coordenada.getX()] = 'X';
+
+            }else{
+
+                matriz[coordenada.getY()][coordenada.getX()] = 'O';
             }
         }
 

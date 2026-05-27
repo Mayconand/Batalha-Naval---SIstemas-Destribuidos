@@ -169,4 +169,23 @@ public class JogoService extends UnicastRemoteObject
 
         return jogador.visualizarAtaques();
     }
+
+    @Override
+    public void jogadorPronto(String nome){
+
+        Jogador jogador = buscarJogador(nome);
+
+        if(jogador != null){
+            jogador.setPronto(true);
+        }
+    }
+
+    @Override
+    public boolean todosProntos(){
+
+        return jogador1 != null
+                && jogador2 != null
+                && jogador1.isPronto()
+                && jogador2.isPronto();
+    }
 }

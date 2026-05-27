@@ -101,6 +101,17 @@ public class Cliente {
                 }
             }
 
+            jogo.jogadorPronto(nome);
+
+            System.out.println(
+                    "Aguardando adversário posicionar os barcos..."
+            );
+
+            while(!jogo.todosProntos()){
+
+                Thread.sleep(1000);
+            }
+
             while (!jogo.verificarVitoria(nome)) {
 
                 if (jogo.turnoAtual().equals(nome)) {
